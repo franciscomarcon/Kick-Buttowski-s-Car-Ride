@@ -1,5 +1,5 @@
 TARGET = project
-SOURCES = main.c state.c gameplay.c vehicle.c items.c menu.c map.c
+SOURCES = src/main.c src/state.c src/gameplay.c src/vehicle.c src/items.c src/menu.c src/map.c
 
 # --- DETECÇÃO AUTOMÁTICA DE SISTEMA ---
 ifeq ($(OS),Windows_NT)
@@ -22,7 +22,7 @@ else
     TARGET_EXEC = $(TARGET)
     CC = gcc
     
-    INCLUDES = 
+    INCLUDES = -Iinclude
     LDFLAGS = 
     LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
     
@@ -34,10 +34,16 @@ CFLAGS = -Wall -std=c99 -Wno-missing-braces -O2
 
 # --- REGRAS ---
 
-all:
+all: $(TARGET_EXEC)
+
+main: $(TARGET_EXEC)
+
+$(TARGET_EXEC): $(SOURCES) include/game.h
 	@echo "Detectado sistema: $(SYSTEM_NAME)"
-	$(CC) $(SOURCES) -o $(TARGET_EXEC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(LIBS)
-	@echo "Compilacao concluida! Executavel: $(TARGET_EXEC)"
+	$(CC) $(SOURCES) -o $@ $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(LIBS)
+	@echo "Compilacao concluida! Executavel: $@"
+
+.PHONY: all main clean
 
 clean:
 	$(CLEAN_CMD)

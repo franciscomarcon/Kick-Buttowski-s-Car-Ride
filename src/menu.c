@@ -70,7 +70,7 @@ void novo_jogo(carro_t* jogador, carro_t* inimigo, caixa_t* caixas, Texture2D ba
     if (IsKeyPressed(KEY_ENTER)) {
         zerar(jogador);
         zerar(inimigo);
-        carrega_mapa(TextFormat("mapas/pista%i.txt", opcao_mapa), jogador, inimigo);
+        carrega_mapa(TextFormat("assets/maps/pista%i.txt", opcao_mapa), jogador, inimigo);
         for (int i = 0; i < QUANT_CAIXAS; i++)
             iniciar_caixa(caixas, i);
         estado = TELA_CONTAGEM;
@@ -118,7 +118,7 @@ void carregar_jogo(carro_t* jogador, carro_t* inimigo, caixa_t* caixas) {
 
     int carrega_map;
     fread(&carrega_map, sizeof(int), 1, arquivo);
-    carrega_mapa(TextFormat("mapas/pista%i.txt", carrega_map), jogador, inimigo);
+    carrega_mapa(TextFormat("assets/maps/pista%i.txt", carrega_map), jogador, inimigo);
 
     fread(jogador, sizeof(carro_t), 1, arquivo);
     fread(inimigo, sizeof(carro_t), 1, arquivo);
