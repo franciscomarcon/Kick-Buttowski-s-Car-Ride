@@ -5,7 +5,7 @@
 **Kick Buttowski's Car Ride** is a top-down racing and combat game inspired by the SNES classic *Rock N' Roll Racing*. Developed in **C** using the **Raylib** library.
 
 ## Features
-* **Dynamic Map Loading:** The game reads level data from `.txt` files located in the `maps/` folder. This allows new tracks to be added without recompiling the source code.
+* **Dynamic Map Loading:** The game reads level data from `.txt` files located in the `mapas/` folder. This allows new tracks to be added without recompiling the source code.
 * **Game Save System:** Players can save their current progress to a binary file (`salvamento.bin`). This allows the game state to be persisted and reloaded later, ensuring players don't lose their progress between sessions.
 * **Advanced Collision System:** For the player, the game implements a vertex-based collision check. Before any movement or rotation, the system calculates if any of the car's vertices would intersect with a collision block, ensuring precision even at high speeds.
 * **Enemy AI:** The AI uses a "look-ahead" logic. It detects obstacles in front of the vehicle and performs a lateral scan to decide the best direction to turn, simulating a basic decision-making process.
@@ -18,7 +18,14 @@
 * **Pause:** Press **P** at any time to pause the game.
 
 ## File Structure
-* **`project.c`**: The main source code file containing the game loop and logic.
+* **`main.c`**: Initializes the game and runs the main loop.
+* **`game.h`**: Shared types, constants, global declarations, and function prototypes.
+* **`state.c`**: Defines the shared game state.
+* **`gameplay.c`**: Draws the race and handles countdown and music.
+* **`vehicle.c`**: Handles car movement, AI, collisions, and checkpoints.
+* **`items.c`**: Handles items, weapons, and power-ups.
+* **`menu.c`**: Handles menus, save/load, pause, and result screens.
+* **`map.c`**: Loads tracks and initializes map and vehicle state.
 * **`Makefile`**: Script to compile the game on both Linux and Windows.
 * **`mapas/`**: Contains `.txt` files used to generate the race tracks dynamically.
 * **`texturas/`**: Stores all graphical assets, including car sprites and environment tiles.

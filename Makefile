@@ -1,4 +1,5 @@
 TARGET = project
+SOURCES = main.c state.c gameplay.c vehicle.c items.c menu.c map.c
 
 # --- DETECÇÃO AUTOMÁTICA DE SISTEMA ---
 ifeq ($(OS),Windows_NT)
@@ -35,7 +36,7 @@ CFLAGS = -Wall -std=c99 -Wno-missing-braces -O2
 
 all:
 	@echo "Detectado sistema: $(SYSTEM_NAME)"
-	$(CC) project.c -o $(TARGET_EXEC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(LIBS)
+	$(CC) $(SOURCES) -o $(TARGET_EXEC) $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(LIBS)
 	@echo "Compilacao concluida! Executavel: $(TARGET_EXEC)"
 
 clean:
